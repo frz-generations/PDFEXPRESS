@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # FRZ PDF Express
 
 **An open-source application by FRZ Generations** — free PDF, image and document tools that run entirely on your device. FRZ Generations provides open-source apps for governments and for anyone who wishes to use them in their own applications.
@@ -59,3 +60,6 @@ Undo/redo (Ctrl+Z / Ctrl+Y), a ⋯ menu on every page (redact all text and/or im
 ## File names, phones and installing
 - Every PDF the app creates is named `<original name>-<action>frz.pdf` (for example `report-bookletfrz.pdf`, `report-highlightedfrz.pdf`). "frz" is only in the file name, never inside the PDF.
 - On phones, files are downloaded (check the Downloads folder). `device.js` detects the device, OS, model and browser locally and, on the website only, offers the official app link and "Install as app" (iPhone/iPad: Safari → Share → Add to Home Screen; other iOS browsers show that this device can't install from them). The desktop app never shows install prompts. Set the official download link in the `OFFICIAL_APP_URL` constant at the top of `device.js`.
+=======
+# PDFEXPRESS
+>>>>>>> eb02d578214cb3907cb8235c7d3c377f690492aa
