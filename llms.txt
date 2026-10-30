@@ -1,0 +1,24 @@
+# FRZ PDF Express
+
+FRZ PDF Express is a free, MIT-licensed, open-source browser-based PDF toolkit created by Faraz Ahammed CM / FRZ Generations. It is designed for free PDF and image tools without sign-up. Very large documents remain subject to available browser memory.
+
+## Privacy and offline use
+
+PDF and Office files are processed locally in the browser. The website does not upload user documents to a conversion server. After the app shell and required client-side libraries load once, cached tools can work offline. OCR language data may need an initial online download.
+
+## Tools
+
+The 33-tool catalog includes merge, split, organize, delete pages, rotate, insert blank pages, image-to-PDF, scan-to-PDF, page extraction and viewing, PDF-to-image, crop margins, visual-signature stamping, text comparison, page numbering, watermark, highlight, add text, redact, form fill, flatten, compress, repair, metadata editing, OCR, and fast selectable-text extraction.
+
+The Scan to PDF phone edition can capture several document photos from the rear camera. Camera permission is requested only when the user taps Start rear camera inside Scan to PDF; choosing existing images does not request camera permission. Per-page freeform crop handles, select-all/select-none, batch crop and black-and-white edits, and A4, A5, Letter and Legal page sizes are available before creating one PDF. Photos are processed in the browser and are not uploaded.
+
+Converters include Excel/XLSX/XLS/CSV/TSV spreadsheet-to-PDF; modern PPTX slide-text-to-PDF (not a visual-layout reproduction); PDF pages to image-based PowerPoint slides; PDF text to XLSX with heuristic row/column reconstruction; modern DOCX text-to-PDF; PDF selectable text to basic DOCX paragraphs; and PDF selectable text to Markdown with page headings. DOCX conversion does not preserve all formatting or images. PDF text comparison reports differing page counts and pages present in only one file, but does not compare page images or layout. Cropping adjusts the visible crop box without erasing hidden page content. Signature stamping is visual only and is not a certified digital signature. Scanned PDFs need OCR before text extraction.
+
+## Install and PDF opening
+
+The installed app's full and short name is FRZ PDF Express. On compatible Chromium desktop systems, the app can register as a PDF file handler and route an opened PDF directly to its full-screen Viewer. The user must install and choose or approve the file association in device settings; a website cannot force the system default, and file handling is not available on every browser or mobile platform. Where supported, app shortcuts open the Viewer, Merge PDFs, and Scan to PDF.
+
+## Pages
+
+- `/` — FRZ Generations PDF Tools landing page, searchable and filterable tool catalog, privacy details, and FAQs.
+- `/app.html` — FRZ PDF Express tool catalog, full-screen PDF Viewer, page utilities, converters, and local processing panels.

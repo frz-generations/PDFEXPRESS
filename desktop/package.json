@@ -1,0 +1,112 @@
+{
+  "name": "frz-pdf-express",
+  "productName": "FRZ PDF Express",
+  "version": "1.1.0",
+  "description": "Offline PDF, image and document tools. Open source (MIT).",
+  "main": "main.js",
+  "author": {
+    "name": "Faraz Ahammed CM / FRZ Generations",
+    "email": "frzgenerations@gmail.com"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/frz-generations",
+  "scripts": {
+    "start": "electron .",
+    "dist:linux": "electron-builder --linux deb",
+    "dist:win": "electron-builder --win nsis portable --x64",
+    "dist:all": "electron-builder --linux deb --win nsis portable --x64"
+  },
+  "devDependencies": {
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.frzgenerations.pdfexpress",
+    "productName": "FRZ PDF Express",
+    "copyright": "Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations. MIT License.",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "..",
+        "to": "www",
+        "filter": [
+          "**/*",
+          "!desktop/**",
+          "!tools/**",
+          "!.git/**",
+          "!**/node_modules/**",
+          "!*.zip"
+        ]
+      }
+    ],
+    "fileAssociations": [
+      {
+        "ext": "pdf",
+        "name": "PDF document",
+        "mimeType": "application/pdf",
+        "role": "Viewer",
+        "icon": "build/pdf-file.ico"
+      }
+    ],
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Office",
+      "maintainer": "Faraz Ahammed CM <frzgenerations@gmail.com>",
+      "synopsis": "Offline PDF, image and document tools",
+      "icon": "icon.png",
+      "mimeTypes": [
+        "application/pdf"
+      ],
+      "executableName": "frz-pdf-express",
+      "syncDesktopName": true
+    },
+    "deb": {
+      "depends": [
+        "libgtk-3-0",
+        "libnotify4",
+        "libnss3",
+        "libxss1",
+        "libxtst6",
+        "xdg-utils",
+        "libatspi2.0-0",
+        "libuuid1",
+        "libsecret-1-0"
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "icon.png",
+      "signAndEditExecutable": true,
+      "signExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "license": "build/license.txt",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}.${ext}"
+    },
+    "publish": null
+  },
+  "desktopName": "frz-pdf-express.desktop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/frz-generations/frz-pdf-express.git"
+  }
+}

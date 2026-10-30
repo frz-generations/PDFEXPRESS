@@ -1,0 +1,4 @@
+# FRZ PDF Express — security contact (RFC 9116)
+Contact: mailto:frzgenerations@gmail.com
+Expires: 2027-10-17T00:00:00.000Z
+Preferred-Languages: en

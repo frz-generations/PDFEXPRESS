@@ -1,0 +1,61 @@
+FRZ PDF Express
+An open-source application by FRZ Generations
+Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations
+
+ABOUT FRZ GENERATIONS
+---------------------
+This application was created by FRZ Generations, whose open-source apps are
+provided for governments and for anyone who wishes to use them in their own
+applications.
+
+CREATORS AND CREDIT
+-------------------
+The original source code, design, text and branding assets of FRZ PDF Express
+are credited to:
+
+    Faraz Ahammed CM / FRZ Generations
+
+Faraz Ahammed CM / FRZ Generations are the sole creators of this application's
+original code. Third-party libraries and fonts that the application loads are
+the work of their respective authors and remain under their own licences
+(see THIRD_PARTY_NOTICES.md); they are not claimed by this notice.
+
+GOVERNMENT GUIDELINES
+---------------------
+This application was developed on the basis of government open-source and
+open-standards guidelines: it is released under an OSI-approved licence (MIT),
+its source is fully readable and editable, it uses open web standards, it has
+no backend and no user accounts, it makes no third-party requests, and all
+files are processed on the user's own device. Its accessibility and security
+design follows GIGW 3.0 and WCAG 2.1 AA. See GUIDELINES-COMPLIANCE.md for the
+checklist and for the items that still need an official audit.
+
+REQUIRED CREDIT WHEN YOU USE THIS CODE
+--------------------------------------
+You may use, copy, modify, merge, publish, distribute, sublicense and sell this
+software for any purpose, including government and commercial use, under the
+MIT License (see LICENSE).
+
+When you use this code, in whole or in part, you must:
+
+  1. Keep the copyright notice and the MIT permission notice (LICENSE) with all
+     copies or substantial portions of the software; and
+  2. State clearly, in your documentation, repository or "About" screen, that
+     the code is credited to "Faraz Ahammed CM / FRZ Generations" and that it
+     is an open-source application of FRZ Generations.
+
+Suggested wording:
+
+    "Based on FRZ PDF Express, created by
+     Faraz Ahammed CM / FRZ Generations. Licensed under the MIT License."
+
+Modified versions should say that they are modified and must not imply that
+FRZ Generations endorses the modified version.
+
+The names "FRZ", "FRZ Generations" and "FRZ PDF Express" and the
+logo files are identifiers of the creators; the MIT License does not grant any
+right to use them to suggest endorsement.
+
+CONTACT
+-------
+FRZ Generations - frzgenerations@gmail.com
