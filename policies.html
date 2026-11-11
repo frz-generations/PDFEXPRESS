@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+  FRZ PDF Express — an open-source application by FRZ Generations
+  Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations
+  Sole creators: Faraz Ahammed CM / FRZ Generations.
+  SPDX-License-Identifier: MIT — keep this notice and credit the creators when using, modifying or redistributing. See LICENSE and NOTICE.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta name="referrer" content="no-referrer">
+<title>Policies, accessibility and licence — FRZ PDF Express</title>
+<meta name="description" content="Privacy and local-storage notice, accessibility status, terms, licence and security contact for FRZ PDF Express by FRZ Generations.">
+<meta name="author" content="Faraz Ahammed CM / FRZ Generations">
+<meta name="copyright" content="Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations. Released under the MIT License.">
+<link rel="license" href="LICENSE">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="stylesheet" href="vendor/fonts/fonts.css">
+<style>
+  :root{ --bg:#fbf8f1; --ink:#1d1a14; --soft:#4b453a; --line:#d9d1bf; --link:#7a5a12; --card:#fffdf8; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#0c0e11; --ink:#f1ede4; --soft:#c3bdae; --line:#2c323b; --link:#e2bd6a; --card:#14171c; } }
+  *{ box-sizing:border-box; }
+  body{ margin:0; background:var(--bg); color:var(--ink); font:16px/1.65 Inter, system-ui, sans-serif; }
+  .skip{ position:absolute; left:8px; top:-60px; background:#c9a24b; color:#000; padding:10px 16px; border-radius:8px; font-weight:600; }
+  .skip:focus{ top:8px; }
+  header, main, footer{ max-width:820px; margin:0 auto; padding:24px 20px; }
+  h1{ font:700 32px/1.2 Fraunces, Georgia, serif; margin:.2em 0 .4em; }
+  h2{ font:600 24px/1.3 Fraunces, Georgia, serif; margin:0 0 .5em; }
+  section{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 24px; margin:0 0 20px; }
+  a{ color:var(--link); }
+  :focus-visible{ outline:3px solid #c9a24b; outline-offset:2px; }
+  nav ul{ list-style:none; display:flex; flex-wrap:wrap; gap:8px 18px; padding:0; margin:0; }
+  code{ font-family:'IBM Plex Mono', monospace; font-size:.92em; }
+  li{ margin:.25em 0; }
+  .note{ padding:12px 14px; border-left:4px solid #c9a24b; background:color-mix(in srgb, var(--card) 90%, #c9a24b); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<header>
+  <p><a href="index.html">← FRZ PDF Express home</a> · <a href="app.html">Open the tools</a></p>
+  <h1>Policies, accessibility and licence</h1>
+  <p>FRZ PDF Express is an open-source application by FRZ Generations. The web app performs document operations in the browser and includes a separate optional desktop wrapper.</p>
+  <nav aria-label="On this page">
+    <ul>
+      <li><a href="#accessibility">Accessibility statement</a></li>
+      <li><a href="#privacy">Privacy and local storage</a></li>
+      <li><a href="#terms">Terms of use and disclaimer</a></li>
+      <li><a href="#copyright">Copyright and licence</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#help">Help and contact</a></li>
+    </ul>
+  </nav>
+  <p><small>Statement last reviewed 8 November 2026.</small></p>
+</header>
+<main id="main" tabindex="-1">
+
+<section id="accessibility" aria-labelledby="h-acc">
+  <h2 id="h-acc">Accessibility statement</h2>
+  <p>FRZ Generations intends the interface to be usable by people with different access needs. The code includes accessibility-related features such as semantic page structure, some labelled controls, visible focus styling, live status text, and keyboard support for file drop zones. These are feature descriptions, not a conformance finding.</p>
+  <p class="note"><strong>Conformance and evaluation status:</strong> no independent accessibility assessment, applicable BIS IS 17802 evaluation, government review, screen-reader test record, or disabled-user test report was included with the supplied source archive. This version does <strong>not</strong> claim conformance to WCAG 2.1 Level AA, BIS IS 17802, or GIGW 3.0, and does not claim STQC certification or government approval. Automated axe-core and comprehensive keyboard tests are not represented as completed.</p>
+  <p>The interface is currently in English. PDF page-preview and annotation tasks are visual, and keyboard or assistive-technology support may differ between tools. Do not assume every document or generated output is accessible. The source tree does not establish the status of every workflow at every zoom, screen-reader, or responsive setting.</p>
+  <p>For an applicable Indian public-sector deployment, the responsible owner should determine scope, arrange qualified manual and assistive-technology evaluation, map findings separately to current GIGW and BIS IS 17802 requirements, test complete tasks with disabled users, and obtain any accessibility review required by procurement or policy. See the <a href="GUIDELINES-COMPLIANCE.md">scope and evidence crosswalk</a> and <a href="RESEARCH-SOURCES.md">dated source notes</a>.</p>
+  <p>If you encounter an accessibility barrier, write to <a href="mailto:frzgenerations@gmail.com">frzgenerations@gmail.com</a> with the page, tool, steps, browser and assistive technology, if any. Please do not attach a sensitive document unless the maintainers have arranged a secure channel.</p>
+</section>
+
+<section id="privacy" aria-labelledby="h-priv">
+  <h2 id="h-priv">Privacy and local storage</h2>
+  <ul>
+    <li><strong>Document processing:</strong> the application source includes no remote document-processing API. Files selected for the tools are handled by the client on the device running the application; the application's normal processing flow does not upload document contents to FRZ Generations. Links that you choose to open, your browser, operating system, or a self-hosting provider may have separate network and logging behavior.</li>
+    <li><strong>Application connections:</strong> the supplied project bundles its runtime libraries, fonts and OCR language data. No built-in user-account service, advertising or analytics SDK was found in this source review. User-activated external links (for example, email, issue reporting or a third-party project page) connect to their destination. A self-hosting operator can still receive ordinary web request metadata, such as IP address and requested asset paths, through the hosting stack.</li>
+    <li><strong>Viewer Recent files:</strong> PDFs opened in the PDF Viewer are saved by that viewer to the local browser/app profile's IndexedDB so they can be reopened from “Recent files.” The feature attempts to retain at most 30 files and about 400 MiB of PDF data; browser or device storage limits may reduce this. Remove an individual item or use “Clear history” in the viewer. This retention applies to PDFs opened in the viewer, not the separate tools' file picker flow.</li>
+    <li><strong>Other local data:</strong> theme/viewer preferences use browser local storage, and the optional offline mode caches application assets in the service-worker cache. These are stored on the device/profile, not sent to a FRZ-hosted account service. Clearing this site's/app's stored data can remove viewer files, preferences and offline assets; browser storage may also be evicted according to browser/device policy.</li>
+    <li><strong>Shared devices:</strong> remove PDFs from Recent files and clear the browser/app profile data when appropriate. Removing a Recent-file entry is not a guarantee of secure erasure from operating-system backups, snapshots or storage media.</li>
+    <li><strong>Camera:</strong> the phone-scan tool requests camera access only after you choose “Start rear camera” in that tool. Its captured images and output are processed in the client. Your browser or operating system controls permission behavior; review and revoke camera permissions through its settings if needed.</li>
+    <li><strong>Institutional use:</strong> local processing alone does not decide whether personal-data law, records policy, retention rules or institutional duties apply. The institution operating or directing the workflow must determine its role, purpose, notices, retention, sharing and applicable legal basis for its actual deployment.</li>
+  </ul>
+</section>
+
+<section id="terms" aria-labelledby="h-terms">
+  <h2 id="h-terms">Terms of use and disclaimer</h2>
+  <ul>
+    <li>The software is provided “as is” under the MIT License, without warranty of any kind. Check outputs before relying on them.</li>
+    <li>FRZ PDF Express is created and maintained by FRZ Generations. <strong>It is not an official website or service of any government department</strong> and no government body has approved, adopted, endorsed, or certified this copy unless the responsible deploying organisation separately and accurately states its own decision.</li>
+    <li>“Sign PDF” adds a visual signature image; it is not a certificate-based digital signature. “Redact,” “Crop” and conversion tools behave as described in the tool-specific notices; verify output content, layout and metadata before use. Check the receiving form or portal's file-size, dimension, format and signature rules. Presets are examples and are not an assurance of acceptance.</li>
+    <li>This statement is not legal advice and does not replace a department's accessibility, privacy, security, procurement or records review. Do not use the software for unlawful purposes.</li>
+  </ul>
+</section>
+
+<section id="copyright" aria-labelledby="h-copy">
+  <h2 id="h-copy">Copyright and licence</h2>
+  <p>Copyright © 2026 <strong>Faraz Ahammed CM / FRZ Generations</strong>. Faraz Ahammed CM / FRZ Generations are the sole creators of this application's original code. The application is released as open source under the <a href="LICENSE">MIT License</a>. Public-sector review and evidence status is described separately; no conformity, audit, approval or certification claim is made by this licence statement.</p>
+  <p>Anyone may use, copy, edit, publish, distribute and sell this software — including governments and commercial users — <strong>provided the copyright notice and the MIT licence text are kept unchanged</strong> in all copies and substantial portions, and the credit in <a href="NOTICE">NOTICE</a> is given: “Based on FRZ PDF Express, created by Faraz Ahammed CM / FRZ Generations. Licensed under the MIT License.” Modified versions must say they are modified.</p>
+  <p>Third-party libraries and fonts bundled in the <code>vendor</code> folder remain under their own licences; see <a href="THIRD_PARTY_NOTICES.md">THIRD_PARTY_NOTICES.md</a> and <code>vendor/licenses</code>.</p>
+</section>
+
+<section id="security" aria-labelledby="h-sec">
+  <h2 id="h-sec">Security</h2>
+  <p>The web application has no FRZ-operated processing backend in this source archive. Its security depends on the delivered code, browser/Electron runtime, hosting and release configuration. A source review, local tests or dependency scan is not a penetration test, code audit, security clearance, or proof that a deployed copy is secure.</p>
+  <p>For vulnerability reports, email <a href="mailto:frzgenerations@gmail.com">frzgenerations@gmail.com</a>; see <a href=".well-known/security.txt">security.txt</a>. Describe the affected version, environment, reproducible steps and impact. Avoid sending real personal data or confidential documents. Please allow reasonable time for coordinated remediation before public disclosure.</p>
+</section>
+
+<section id="help" aria-labelledby="h-help">
+  <h2 id="h-help">Help and contact</h2>
+  <ul>
+    <li>Open <a href="app.html">the tools</a>, search by task (for example “resize photo”, “merge”, “QR”), choose a tool and select a file.</li>
+    <li>The website can work offline after application assets have been loaded and cached. Browser, device, storage, font, OCR and permission support can vary.</li>
+    <li>Contact: FRZ Generations — <a href="mailto:frzgenerations@gmail.com">frzgenerations@gmail.com</a>.</li>
+  </ul>
+</section>
+</main>
+<footer>
+  <p>FRZ PDF Express — an open-source app by FRZ Generations. <a href="LICENSE">MIT licensed</a> · <a href="NOTICE">Credit</a>: Faraz Ahammed CM / FRZ Generations.</p>
+</footer>
+</body>
+</html>

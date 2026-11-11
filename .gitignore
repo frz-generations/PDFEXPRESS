@@ -1,0 +1,13 @@
+# dependencies and build output
+node_modules/
+desktop/node_modules/
+desktop/dist/
+dist/
+# archives, logs, OS junk
+*.zip
+*.log
+.DS_Store
+Thumbs.db
+*.bak.js
+.vscode/
+.idea/

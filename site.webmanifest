@@ -1,0 +1,49 @@
+{
+  "id": "./",
+  "name": "FRZ PDF Express",
+  "short_name": "FRZ PDF Express",
+  "description": "Free, open-source (MIT) and private FRZ PDF Express tools by FRZ Generations. View, merge and edit PDFs, convert documents, and scan pages with your phone camera.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "background_color": "#01030a",
+  "theme_color": "#0c0e11",
+  "orientation": "any",
+  "categories": ["productivity", "utilities"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open PDF Viewer",
+      "short_name": "PDF Viewer",
+      "description": "Open a PDF in FRZ PDF Express",
+      "url": "./app.html#viewer",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Merge PDFs",
+      "short_name": "Merge PDFs",
+      "description": "Combine PDF files",
+      "url": "./app.html#merge",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Scan to PDF",
+      "short_name": "Scan PDF",
+      "description": "Capture pages and create a PDF",
+      "url": "./app.html#scan",
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ],
+  "file_handlers": [
+    {
+      "action": "./app.html#viewer",
+      "accept": { "application/pdf": [".pdf"] },
+      "icons": [{ "src": "icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ],
+  "launch_handler": { "client_mode": "navigate-existing" }
+}
