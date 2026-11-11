@@ -11,8 +11,11 @@ contextBridge.exposeInMainWorld('frzDesktop', {
   listPrinters: () => ipcRenderer.invoke('frz:listPrinters'),
   printerOptions: name => ipcRenderer.invoke('frz:printerOptions', String(name || '')),
   printPdf: (bytes, opts) => ipcRenderer.invoke('frz:printPdf', bytes, opts),
+<<<<<<< HEAD
   printerProps: o => ipcRenderer.invoke('frz:printerProps', o),
   printImages: o => ipcRenderer.invoke('frz:printImages', o),
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
   printPage: opts => ipcRenderer.invoke('frz:printPage', opts),
   saveCopy: o => ipcRenderer.invoke('frz:saveCopy', o),
   pathForFile: f => { try { return webUtils.getPathForFile(f) || ''; } catch (e) { return ''; } },

@@ -20,6 +20,7 @@ third-party server. They keep their own licences; copies are in `vendor/licenses
 
 ## Desktop installers (.deb / .exe)
 
+<<<<<<< HEAD
 The supplied archive contains desktop build sources, not prebuilt installers.
 The current desktop lockfile selects **Electron 44.10.2** (MIT), which bundles
 Chromium and Node.js components into installers when built. Those upstream
@@ -27,6 +28,12 @@ component licence materials are part of the Electron runtime; verify the
 resulting package's `LICENSE` and `LICENSES.chromium.html` before release.
 The pinned `electron-builder` 26.18.0 dependency is build tooling, not shipped
 application runtime.
+=======
+The installers in `desktop/` additionally contain **Electron 44.9.0** (MIT) and
+the Chromium and Node.js components it bundles. Their licences are shipped inside
+each installer as `LICENSE` and `LICENSES.chromium.html`. Build tooling
+(electron-builder) is not shipped.
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 
 Licences were read from the package metadata and licence files at the versions
 above; please re-verify before a formal release.

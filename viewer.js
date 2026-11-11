@@ -136,7 +136,10 @@
   .vw-recent li .m{color:var(--text-faint);font-size:11.5px;white-space:nowrap}
   .vw-recent button{background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:7px;padding:6px 10px;cursor:pointer;font:500 12px var(--font-body)}
   .vw-msg{font-size:12px;color:var(--text-muted);min-height:18px;margin:4px 0}
+<<<<<<< HEAD
   .vw-storage-note{max-width:640px;margin:10px auto 0;padding:0 6px;color:var(--text-muted);font-size:12px;line-height:1.5;text-align:center}
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
   #vwDoc>.vw-msg{position:absolute;z-index:25;left:50%;bottom:14px;transform:translateX(-50%);margin:0;padding:7px 14px;border-radius:999px;background:var(--surface-2);border:1px solid var(--gold-line);color:var(--text);box-shadow:0 6px 20px rgba(0,0,0,.3);pointer-events:none;max-width:90%}
   #vwDoc>.vw-msg:empty{display:none}
   .frz-default-dialog{width:min(460px,calc(100vw - 28px));padding:22px;border:1px solid var(--gold-line);border-radius:14px;background:var(--surface);color:var(--text)}
@@ -153,7 +156,10 @@
     <div id="vwHome">
       <div class="dropzone" id="vwDrop"><div class="dz-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
         <h4>Drop PDFs here, or click to choose</h4><p>Open several at once — each opens in its own tab. Nothing is uploaded.</p></div>
+<<<<<<< HEAD
       <p class="vw-storage-note">PDFs opened here are saved in this browser/app profile for “Recent files” until you remove them or clear history. On a shared device, clear viewer history when you finish. <a href="policies.html#privacy">Privacy details</a>.</p>
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       <div class="vw-recent" id="vwRecent" hidden>
         <h3>Recent files <button type="button" id="vwClear" style="margin-left:8px">Clear history</button></h3>
         <div class="vw-msg" id="vwRecentMsg" role="status" aria-live="polite"></div>

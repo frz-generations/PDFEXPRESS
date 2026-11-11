@@ -1,5 +1,6 @@
 # Security policy
 
+<<<<<<< HEAD
 FRZ PDF Express is a client-side web application with an optional Electron desktop shell. The supplied project contains no remote document-processing API or FRZ-hosted application backend. A website operator, browser, operating system or desktop profile may have its own logging, cache and backup behavior; selected files opened in the PDF Viewer are retained locally in IndexedDB for Recent files until removed or cleared (see [Privacy and local storage](policies.html#privacy)).
 
 ## Report a vulnerability
@@ -15,3 +16,11 @@ Run local checks with `python3 tools/check-project.py`, `python3 tools/check-not
 ## Supported release
 
 Report issues against the latest source or installer release that the maintainers provide. The supplied source version is 1.1.0. Verify the actual bundled Electron runtime, operating systems, signatures and updater channel for each packaged release; unsigned installers are not suitable for assuming publisher authenticity. No product security certification or independent audit is claimed by this policy.
+=======
+FRZ PDF Express is a static, offline-capable web application (and an Electron desktop shell around it). It has no server component and sends no data anywhere.
+
+- Report vulnerabilities by email to **frzgenerations@gmail.com** (see also `.well-known/security.txt`). Please include steps to reproduce and the browser/OS.
+- Please allow reasonable time for a fix before public disclosure.
+- Built-in protections: a strict Content Security Policy on every page (no external origins), `no-referrer`, no cookies or analytics, files processed in memory only, desktop shell with `contextIsolation`, `sandbox`, blocked navigation and a private `app://` scheme.
+- Supported version: the latest release.
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7

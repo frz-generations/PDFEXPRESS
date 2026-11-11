@@ -65,6 +65,7 @@
   .frz-print-dialog label{flex-wrap:wrap;min-width:0}
   @media(max-width:760px){.frz-print-dialog{margin:0;width:100vw;max-width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.frz-print-dialog .pr-head{flex-wrap:wrap}.frz-print-dialog .pr-head .sub{order:3;flex-basis:100%}.frz-print-dialog select,.frz-print-dialog input[type=text]{width:100%}.frz-print-dialog #prPrinter{width:100%}}
   @media(max-width:820px){.frz-print-dialog .pr-body{grid-template-columns:1fr}.frz-print-dialog .pr-right{position:static;order:-1}.frz-print-dialog .pv-stage{min-height:200px}}
+<<<<<<< HEAD
   .frz-sub{width:min(500px,calc(100vw - 16px));max-height:calc(100dvh - 16px);overflow:auto;padding:0;border:1px solid var(--gold-line);border-radius:10px;background:var(--surface);color:var(--text)}
   .frz-sub::backdrop{background:rgba(3,5,8,.6)}
   .frz-sub .sb-h{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);font:600 14px var(--font-body)}
@@ -90,6 +91,8 @@
   .frz-sub [disabled]{opacity:.5}
   .frz-sub [hidden]{display:none!important}
   .frz-sub .hint{font-size:11.5px;color:var(--text-muted);line-height:1.45}
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
   .frz-print-ask{width:min(440px,calc(100vw - 28px));padding:20px;border:1px solid var(--gold-line);border-radius:14px;background:var(--surface);color:var(--text)}
   .frz-print-ask::backdrop{background:rgba(3,5,8,.7)}
   .frz-print-ask h2{margin:0 0 8px;font:600 20px var(--font-display)}
@@ -131,7 +134,11 @@
     if (kind === 'multi' || kind === 'cut') k = +o.k; if (kind === 'fold') k = 2;
     const mk = (landscape, dim) => {
       if (o.paper === 'same') { const a = Math.max(dim[0], dim[1]), b = Math.min(dim[0], dim[1]); return landscape ? [a, b] : [b, a]; }
+<<<<<<< HEAD
       const p = o.paperDims ? [o.paperDims.widthMm * MM, o.paperDims.heightMm * MM] : (PAPER[o.paper] || PAPER.A4); return landscape ? [Math.max(...p), Math.min(...p)] : [Math.min(...p), Math.max(...p)];
+=======
+      const p = PAPER[o.paper] || PAPER.A4; return landscape ? [Math.max(...p), Math.min(...p)] : [Math.min(...p), Math.max(...p)];
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     };
     if (kind === 'single' || kind === 'poster') {
       const sides = [], sheets = [], tiles = [];
@@ -197,12 +204,19 @@
   const ovRect = (f, r) => { const x = f.x + (r.x - f.x0) * f.s, y = f.y + (r.y - f.y0) * f.s, w = r.w * f.s, h = r.h * f.s; const X0 = Math.max(x, f.x), Y0 = Math.max(y, f.y), X1 = Math.min(x + w, f.x + f.w), Y1 = Math.min(y + h, f.y + f.h); return X1 > X0 && Y1 > Y0 ? { x: X0, y: Y0, w: X1 - X0, h: Y1 - Y0 } : null; };
   const annsOf = (t, ent, o) => (t.ann[ent.id] || []).filter(a => o.markups || a.k === 'rd');
   function postFx(cv, o) {
+<<<<<<< HEAD
     if (!o.gray && !o.ink && !o.asImage) return; const cx = cv.getContext('2d'), d = cx.getImageData(0, 0, cv.width, cv.height), a = d.data;
+=======
+    if (!o.gray && !o.ink) return; const cx = cv.getContext('2d'), d = cx.getImageData(0, 0, cv.width, cv.height), a = d.data;
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     for (let i = 0; i < a.length; i += 4) {
       let r = a[i], g = a[i + 1], b = a[i + 2];
       if (o.gray) { r = g = b = 0.299 * r + 0.587 * g + 0.114 * b; }
       if (o.ink) { r = 255 - (255 - r) * 0.62; g = 255 - (255 - g) * 0.62; b = 255 - (255 - b) * 0.62; }
+<<<<<<< HEAD
       if (o.keepBlack && r < 50 && g < 50 && b < 50) { r = g = b = 0; }
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       a[i] = r; a[i + 1] = g; a[i + 2] = b;
     }
     cx.putImageData(d, 0, 0);
@@ -234,7 +248,11 @@
   function readOpts(dlg) {
     const g = id => dlg.querySelector('#' + id), num = (id, d) => { const v = parseFloat(g(id).value); return Number.isFinite(v) ? v : d; };
     const t = V.active(); if (!t) throw new Error('Open a PDF first.');
+<<<<<<< HEAD
     const D = window.frzDesktop && window.frzDesktop.listPrinters, direct = !!(D && g('prPrinter').value && !dlg._systemPrinting);
+=======
+    const D = window.frzDesktop && window.frzDesktop.listPrinters, direct = !!(D && g('prPrinter').value);
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     const sel = dlg.querySelector('input[name=prPages]:checked').value;
     let P;
     if (sel === 'all') P = [...Array(t.n).keys()]; else if (sel === 'cur') P = [Math.min(t.n, Math.max(1, V.currentPage())) - 1]; else P = parseRange(g('prRange').value, t.n);
@@ -250,12 +268,19 @@
     return {
       t, P, layout, k: kk, order: g('prOrder').value, binding: g('prBinding').value, bsub, sheetFrom: Math.max(1, Math.round(num('prFrom', 1))), sheetTo: Math.round(num('prTo', 0)) || 0,
       sides, flip: g('prFlip').value, rev: g('prRev').checked, scaleMode, scalePct: Math.min(400, Math.max(5, num('prScalePct', 100))),
+<<<<<<< HEAD
       paper: g('prPaperSrc').checked && layout === 'single' ? 'same' : g('prPaper').value,
       paperDims: (() => { const p = g('prPaper').selectedOptions[0]; const w = Number(p && p.dataset.widthMm), h = Number(p && p.dataset.heightMm); return w > 0 && h > 0 ? { widthMm: w, heightMm: h } : null; })(),
       orient: dlg.querySelector('input[name=prOr]:checked').value,
       margin: layout === 'single' ? 0 : Math.max(0, num('prMargin', 8)), gap: Math.max(0, num('prGap', 4)), tileScale: Math.min(800, Math.max(10, num('prTile', 200))), overlap: Math.max(0, num('prOverlap', 5)), cutMarks: g('prCutMarks').checked,
       guides: g('prGuides').checked, asImage: dlg._pp.asImage, keepBlack: dlg._pp.keepBlack, borderless: dlg._pp.borderless, toFile: dlg._pp.toFile, borders: layout === 'multi' || layout === 'cut' || layout === 'fold' ? g('prBorders').checked : false, dpi: Math.min(1200, dlg._pp.dpi || 300),
       gray: g('prGray').checked && !direct && !dlg._pp.letPrinter, grayPrinter: g('prGray').checked, ink: g('prInk').checked && !direct && !dlg._pp.letPrinter, inkPrinter: g('prInk').checked, markups: g('prMark').value !== 'doc',
+=======
+      paper: g('prPaperSrc').checked && layout === 'single' ? 'same' : g('prPaper').value, orient: dlg.querySelector('input[name=prOr]:checked').value,
+      margin: layout === 'single' ? 0 : Math.max(0, num('prMargin', 8)), gap: Math.max(0, num('prGap', 4)), tileScale: Math.min(800, Math.max(10, num('prTile', 200))), overlap: Math.max(0, num('prOverlap', 5)), cutMarks: g('prCutMarks').checked,
+      guides: g('prGuides').checked, borders: layout === 'multi' || layout === 'cut' || layout === 'fold' ? g('prBorders').checked : false, dpi: 300,
+      gray: g('prGray').checked && !direct, grayPrinter: g('prGray').checked, ink: g('prInk').checked && !direct, inkPrinter: g('prInk').checked, markups: g('prMark').value !== 'doc',
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       copies: Math.max(1, Math.min(99, Math.round(num('prCopies', 1)))), direct
     };
   }
@@ -305,7 +330,11 @@
       for (let c = 0; c < cells.length; c++) {
         if (cells[c] == null) continue; const pi = o.P[cells[c]], f = place(pd[pi][0], pd[pi][1], rects[c], pad, o, L.per, tile), y = sheet[1] - f.y - f.h;
         const ent = t.order[pi], anns = annsOf(t, ent, o), srcPage = src && ent.src >= 0 ? src.getPage(ent.src) : null;
+<<<<<<< HEAD
         const vector = srcPage && srcPage.getRotation().angle === 0 && !anns.some(a => a.k === 'rd') && !o.gray && !o.ink && !o.asImage && Math.abs(srcPage.getWidth() - pd[pi][0]) < 1 && Math.abs(srcPage.getHeight() - pd[pi][1]) < 1;
+=======
+        const vector = srcPage && srcPage.getRotation().angle === 0 && !anns.some(a => a.k === 'rd') && !o.gray && !o.ink && Math.abs(srcPage.getWidth() - pd[pi][0]) < 1 && Math.abs(srcPage.getHeight() - pd[pi][1]) < 1;
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
         const overlay = () => anns.forEach(a => a.r.forEach(r => { const q = ovRect(f, r); if (!q) return; page.drawRectangle({ x: q.x, y: sheet[1] - q.y - q.h, width: q.w, height: q.h, color: a.k === 'rd' ? rgb(0, 0, 0) : rgb(1, .87, 0), opacity: a.k === 'rd' ? 1 : .4 }); }));
         if (ent.src < 0) overlay();
         else if (vector) {
@@ -313,7 +342,11 @@
           const emb = full ? await out.embedPage(srcPage) : await out.embedPage(srcPage, { left: mb.x + f.x0, right: mb.x + f.x1, bottom: mb.y + (pd[pi][1] - f.y1), top: mb.y + (pd[pi][1] - f.y0) });
           page.drawPage(emb, { x: f.x, y, width: f.w, height: f.h }); overlay();
         } else {
+<<<<<<< HEAD
           const k = Math.max(1, (o.dpi || 300) / 72), pg = await t.pdf.getPage(ent.src + 1), cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(f.w * k)); cv.height = Math.max(1, Math.round(f.h * k));
+=======
+          const k = Math.max(1, 300 / 72), pg = await t.pdf.getPage(ent.src + 1), cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(f.w * k)); cv.height = Math.max(1, Math.round(f.h * k));
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
           const cx = cv.getContext('2d', { alpha: false, willReadFrequently: !!(o.gray || o.ink) }); cx.fillStyle = '#fff'; cx.fillRect(0, 0, cv.width, cv.height);
           await pg.render({ canvasContext: cx, viewport: pg.getViewport({ scale: f.s * k, offsetX: -f.x0 * f.s * k, offsetY: -f.y0 * f.s * k }) }).promise;
           anns.forEach(a => a.r.forEach(r => { const q = ovRect(f, r); if (!q) return; cx.fillStyle = a.k === 'rd' ? '#000' : 'rgba(255,222,0,.4)'; cx.fillRect((q.x - f.x) * k, (q.y - f.y) * k, q.w * k, q.h * k); }));
@@ -365,6 +398,7 @@
     });
   }
 
+<<<<<<< HEAD
 
   /* ---------- Acrobat-style sub-dialogs: Properties, Advanced Options, Advanced Print Setup ---------- */
   const PP0 = () => ({ dpi: 300, borderless: false, asImage: false, simOver: false, toFile: false, letPrinter: false, grayK: true, keepBlack: true, keepCMYK: false });
@@ -482,6 +516,12 @@
   function openDialog() {
     const t = V.active(); if (!t) return;
     const dlg = document.createElement('dialog'); dlg._pp = PP0(); dlg.className = 'frz-print-dialog'; dlg.setAttribute('aria-labelledby', 'prT');
+=======
+  /* ---------- dialog ---------- */
+  function openDialog() {
+    const t = V.active(); if (!t) return;
+    const dlg = document.createElement('dialog'); dlg.className = 'frz-print-dialog'; dlg.setAttribute('aria-labelledby', 'prT');
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     const esc = s => String(s).replace(/[<&>"]/g, '');
     dlg.innerHTML = `
       <div class="pr-head"><h2 id="prT">Print</h2><span class="sub">${esc(t.name)} · ${t.n} page${t.n === 1 ? '' : 's'}</span>
@@ -492,7 +532,10 @@
         <section class="pr-box">
           <div class="row"><label>Printer: <select id="prPrinter"><option value="">System print window (pick the printer there)</option></select></label>
             <button type="button" id="prProps">Properties</button><button type="button" id="prAdv">Advanced</button></div>
+<<<<<<< HEAD
           <div class="row"><label>Paper size <select id="prPaper"><option selected>A4</option><option>A3</option><option>A5</option><option>Letter</option><option>Legal</option><option>Tabloid</option></select></label></div>
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
           <div class="row"><label>Copies: <input type="number" id="prCopies" min="1" max="99" value="1"></label>
             <label><input type="checkbox" id="prGray"> Print in grayscale (black and white)</label>
             <label><input type="checkbox" id="prInk"> Save ink/toner</label></div>
@@ -500,7 +543,12 @@
           <p class="hint" id="prDeskNote" hidden></p>
           <p class="hint" id="prWebNote" hidden>In a web browser the job goes to your browser’s print window, where you choose the printer, tray and paper type. The desktop app can print straight to the printer from here.</p>
           <div id="prAdvPanel" hidden class="sub-panel">
+<<<<<<< HEAD
             <div class="row"><label>Margin (mm) <input type="number" id="prMargin" min="0" max="40" value="8"></label><label>Gap (mm) <input type="number" id="prGap" min="0" max="30" value="4"></label></div>
+=======
+            <div class="row"><label>Paper size <select id="prPaper"><option selected>A4</option><option>A3</option><option>A5</option><option>Letter</option><option>Legal</option><option>Tabloid</option></select></label>
+              <label>Margin (mm) <input type="number" id="prMargin" min="0" max="40" value="8"></label><label>Gap (mm) <input type="number" id="prGap" min="0" max="30" value="4"></label></div>
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
             <div class="row"><label><input type="checkbox" id="prGuides" checked> Cutting guides (several pages per sheet)</label></div>
             <div class="row"><label>When I press Print or Ctrl+P in the viewer
               <select id="prDefault"><option value="">Ask me</option><option value="frz">Always open this window</option><option value="system">Always use the default Ctrl+P print</option></select></label></div>
@@ -523,7 +571,11 @@
             <div class="row"><label><input type="radio" name="prScale" value="fit"> Fit</label><label><input type="radio" name="prScale" value="actual"> Actual size</label></div>
             <div class="row"><label><input type="radio" name="prScale" value="shrink" checked> Shrink oversized pages</label>
               <label><input type="radio" name="prScale" value="custom"> Custom Scale: <input type="number" id="prScalePct" min="5" max="400" value="100" disabled> %</label></div>
+<<<<<<< HEAD
             <div class="row"><label><input type="checkbox" id="prPaperSrc"> Match paper size to each PDF page (when supported)</label></div>
+=======
+            <div class="row"><label><input type="checkbox" id="prPaperSrc"> Choose paper source by PDF page size</label></div>
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
           </div>
           <div class="sub-panel" data-panel="poster" hidden>
             <div class="row"><label>Tile scale <input type="number" id="prTile" min="10" max="800" value="200"> %</label><label>Overlap <input type="number" id="prOverlap" min="0" max="30" value="5"> mm</label>
@@ -569,7 +621,10 @@
         <button type="button" id="prSetup">Page Setup…</button>
         <span class="grow"><span class="msg" role="status" aria-live="polite" id="prMsg"></span></span>
         <label title="Print only the first sheet to check how it comes out"><input type="checkbox" id="prTest"> Test first sheet only</label>
+<<<<<<< HEAD
         <button type="button" id="prSystemPrint" hidden>System print dialog…</button>
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
         <button type="button" id="prPdf">Save as PDF</button>
         <button type="button" id="prPrint2" hidden>Now print the back sides</button>
         <button type="button" class="primary" id="prPrint">Print</button>
@@ -612,7 +667,11 @@
     dlg.querySelectorAll('.seg button').forEach(b => b.onclick = () => { dlg._mode = b.dataset.mode; pvIdx = 0; refresh(); });
     g('pvPrev').onclick = () => { pvIdx = Math.max(0, pvIdx - 1); schedule(20); }; g('pvNext').onclick = () => { pvIdx++; schedule(20); };
     g('pvRange').oninput = e => { e.stopPropagation(); pvIdx = +e.target.value - 1; schedule(30); };
+<<<<<<< HEAD
     g('prAdv').onclick = () => openAdvancedSetup(dlg, g);
+=======
+    g('prAdv').onclick = () => { const p = g('prAdvPanel'); p.hidden = !p.hidden; };
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     g('prSetup').onclick = () => { g('prAdvPanel').hidden = false; g('prPaper').focus(); g('prPaper').scrollIntoView({ block: 'center' }); };
     const close = () => { dlg.close(); dlg.remove(); };
     g('prClose').onclick = close; g('prCancel').onclick = close; dlg.addEventListener('close', () => dlg.remove());
@@ -621,6 +680,7 @@
     /* ---- desktop: printer list and driver options ---- */
     const D = window.frzDesktop && window.frzDesktop.listPrinters ? window.frzDesktop : null;
     let drv = { direct: false, qualityKey: '' };
+<<<<<<< HEAD
     const fill = (sel, list, first) => { sel.textContent = ''; const o0 = document.createElement('option'); o0.value = ''; o0.textContent = first; sel.appendChild(o0); (list || []).filter(c => !(first === 'Automatic' && /^auto$/i.test(c.value))).forEach(c => { const o = document.createElement('option'); o.value = c.value; o.textContent = (c.label || c.value) + (c.def ? ' (printer default)' : ''); sel.appendChild(o); }); sel.disabled = !(list || []).length && !/^Print/.test(first); };
     const fallbackPapers = [
       { value: 'A4', label: 'A4', widthMm: 210, heightMm: 297 }, { value: 'A3', label: 'A3', widthMm: 297, heightMm: 420 },
@@ -664,6 +724,21 @@
     };
     if (D) {
       g('prSystemPrint').hidden = false;
+=======
+    const fill = (sel, list, first) => { sel.textContent = ''; const o0 = document.createElement('option'); o0.value = ''; o0.textContent = first; sel.appendChild(o0); (list || []).filter(c => !(first === 'Automatic' && /^auto$/i.test(c.value))).forEach(c => { const o = document.createElement('option'); o.value = c.value; o.textContent = c.value + (c.def ? ' (printer default)' : ''); sel.appendChild(o); }); sel.disabled = !(list || []).length && !/^Print/.test(first); };
+    async function loadDriver() {
+      const name = g('prPrinter').value; g('prDrv').hidden = true; g('prDeskNote').hidden = false;
+      if (!name) { g('prDeskNote').textContent = 'With no printer chosen, your system print window opens so you can set tray, paper type and quality there.'; refresh(); return; }
+      drv = await D.printerOptions(name).catch(() => ({ direct: false })); drv.qualityKey = drv.qualityKey || '';
+      fill(g('prTray'), drv.tray, 'Automatic'); fill(g('prMType'), drv.mediaType, 'Printer default');
+      const q = g('prQual'); q.textContent = ''; [['', 'Printer default']].concat(drv.quality && drv.quality.length ? drv.quality.map(c => [c.value, c.value]) : [['level:draft', 'Draft'], ['level:normal', 'Normal'], ['level:best', 'Best']]).forEach(([v, l]) => { const o = document.createElement('option'); o.value = v; o.textContent = l; q.appendChild(o); });
+      g('prDrv').hidden = !drv.direct; g('prDeskNote').textContent = drv.direct ? 'Your printer’s own trays, paper types and quality modes are listed. The PDF is sent as it is, so text stays sharp.' : 'This printer’s tray, paper type and quality can only be changed in the system print window. Choose “System print window” to set them.';
+      try { localStorage.setItem('frz-print-printer', name); } catch (e) { }
+      refresh();
+    }
+    g('prProps').onclick = () => { if (D && g('prPrinter').value && drv.direct) g('prDrv').hidden = !g('prDrv').hidden; else { const n = D ? g('prDeskNote') : g('prWebNote'); n.hidden = false; n.scrollIntoView({ block: 'nearest' }); } };
+    if (D) {
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       D.listPrinters().then(list => { list.forEach(p => { const o = document.createElement('option'); o.value = p.name; o.textContent = p.displayName + (p.isDefault ? ' (default)' : ''); g('prPrinter').appendChild(o); }); let last = ''; try { last = localStorage.getItem('frz-print-printer') || ''; } catch (e) { } const pick = list.find(p => p.name === last) || list.find(p => p.isDefault); if (pick) g('prPrinter').value = pick.name; loadDriver(); }).catch(() => { });
       g('prPrinter').onchange = loadDriver;
     } else g('prWebNote').hidden = false;
@@ -673,6 +748,7 @@
 
     async function doPrint(part) {
       const o = readOpts(dlg); say('Preparing…');
+<<<<<<< HEAD
       if (o.toFile) { await downloadPdf(dlg, say); say('Saved to a file instead of printing (Print to File is on).'); return true; }
       const duplex = o.sides === 'auto' ? o.flip : 'one', name = D ? g('prPrinter').value : '';
       if (D && name) {
@@ -688,6 +764,12 @@
           if (wr.ok || feats.length || dlg._devmode) { say(wr.message || (wr.ok ? 'Sent to the printer.' : 'Windows could not apply those printer settings.')); return !!wr.ok; }
         }
         if (o.paper !== 'same' && hasPaperCapability && !drv.win) opts.paperSize = g('prPaper').value;
+=======
+      const duplex = o.sides === 'auto' ? o.flip : 'one', name = D ? g('prPrinter').value : '';
+      if (D && name) {
+        const qv = g('prQual').value, base = { printer: name, copies: o.copies, sides: duplex, color: !o.grayPrinter, title: o.t.name };
+        const opts = { ...base, tray: g('prTray').value, mediaType: g('prMType').value, quality: qv.startsWith('level:') ? '' : qv, qualityKey: drv.qualityKey, qualityLevel: qv.startsWith('level:') ? qv.slice(6) : (o.inkPrinter && !qv ? 'draft' : '') };
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
         const r = await buildPdf(dlg, say, part); let res = await D.printPdf(r.bytes, opts);
         if (!res.ok && (res.unsupported || /ENOENT|not found|lp:/i.test(res.message || ''))) {
           const b = await build(dlg, say, part);
@@ -698,6 +780,7 @@
       if (D) { const b = await build(dlg, say, part); dlg.close(); await printSheets(b.cvs, b.L, V.say); return true; }
       const r = await buildPdf(dlg, say, part); const ok = await printPdfBytes(r.bytes, r.name, say); if (ok && !(o.sides === 'manual' && part === 'front')) dlg.close(); return ok;
     }
+<<<<<<< HEAD
     async function doSystemPrint(part) {
       const o = readOpts(dlg);
       if (o.toFile) { await downloadPdf(dlg, say); say('Saved to a file instead of printing (Print to File is on).'); return true; }
@@ -714,6 +797,8 @@
       catch (e) { say(e.message || String(e)); }
       busy(false);
     };
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     g('prPrint').onclick = async () => {
       busy(true);
       try {
@@ -723,7 +808,11 @@
       } catch (e) { say(e.message || String(e)); }
       busy(false);
     };
+<<<<<<< HEAD
     g('prPrint2').onclick = async () => { busy(true); try { if (await (dlg._systemPrint ? doSystemPrint('back') : doPrint('back'))) { g('prPrint2').hidden = true; dlg._systemPrint = false; } } catch (e) { say(e.message || String(e)); } busy(false); };
+=======
+    g('prPrint2').onclick = async () => { busy(true); try { if (await doPrint('back')) g('prPrint2').hidden = true; } catch (e) { say(e.message || String(e)); } busy(false); };
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     g('prPdf').onclick = async () => { busy(true); try { await downloadPdf(dlg, say); say('Saved. Pages keep their original sharpness.'); } catch (e) { say('Could not build the PDF: ' + (e.message || e)); } busy(false); };
   }
 

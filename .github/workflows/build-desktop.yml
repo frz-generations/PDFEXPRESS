@@ -11,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/check-notices.py
+<<<<<<< HEAD
   security-checks:
     runs-on: ubuntu-latest
     steps:
@@ -26,25 +27,41 @@ jobs:
         working-directory: desktop
   linux-deb:
     needs: [notices, security-checks]
+=======
+  linux-deb:
+    needs: notices
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+<<<<<<< HEAD
       - run: npm ci
+=======
+      - run: npm install
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
         working-directory: desktop
       - run: npm run dist:linux -- --publish never
         working-directory: desktop
       - uses: actions/upload-artifact@v4
         with: { name: linux-deb, path: 'desktop/dist/*.deb' }
   windows-exe:
+<<<<<<< HEAD
     needs: [notices, security-checks]
+=======
+    needs: notices
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
+<<<<<<< HEAD
       - run: npm ci
+=======
+      - run: npm install
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
         working-directory: desktop
       - run: npm run dist:win -- --publish never
         working-directory: desktop

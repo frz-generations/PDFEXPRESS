@@ -12,16 +12,24 @@
   "homepage": "https://github.com/frz-generations",
   "scripts": {
     "start": "electron .",
+<<<<<<< HEAD
     "test": "node --test",
     "test:static": "python3 ../tools/check-project.py && python3 ../tools/check-notices.py",
     "audit": "npm audit --audit-level=high",
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     "dist:linux": "electron-builder --linux deb",
     "dist:win": "electron-builder --win nsis portable --x64",
     "dist:all": "electron-builder --linux deb --win nsis portable --x64"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "electron": "44.10.2",
     "electron-builder": "26.18.0"
+=======
+    "electron": "44.9.0",
+    "electron-builder": "26.15.3"
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
   },
   "build": {
     "appId": "com.frzgenerations.pdfexpress",
@@ -34,9 +42,12 @@
     "files": [
       "main.js",
       "preload.js",
+<<<<<<< HEAD
       "security.js",
       "winprint.js",
       "print-capabilities.js",
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       "package.json"
     ],
     "extraResources": [

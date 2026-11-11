@@ -15,7 +15,10 @@ const { execFile } = require('child_process');
 const path = require('path');
 const fs = require('fs');
 const { pathToFileURL } = require('url');
+<<<<<<< HEAD
 const security = require('./security');
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 
 const SCHEME = 'app';
 const HOST = 'local';
@@ -49,6 +52,7 @@ async function setDefaultPdf() {
   }
   return { ok: false, message: 'Right-click a PDF, choose Get Info, set “Open with” to FRZ PDF Express and click Change All.' };
 }
+<<<<<<< HEAD
 ipcMain.handle('frz:isDefaultPdf', e => fromMain(e) ? isDefaultPdf() : false);
 ipcMain.handle('frz:setDefaultPdf', e => fromMain(e) ? setDefaultPdf() : { ok: false, message: 'Bad request.' });
 
@@ -57,13 +61,38 @@ const os = require('os');
 const { parseLpOptions, buildLpArgs } = require('./print-capabilities');
 const runCmd = (cmd, args) => new Promise(res => execFile(cmd, args, { timeout: 20000 }, (err, stdout, stderr) => res({ err, stdout: String(stdout || ''), stderr: String(stderr || '') })));
 const fromMain = e => security.isTrustedMainFrameEvent(e, win && win.webContents);
+=======
+ipcMain.handle('frz:isDefaultPdf', () => isDefaultPdf());
+ipcMain.handle('frz:setDefaultPdf', () => setDefaultPdf());
+
+/* ---------- printing from the viewer (direct to a printer, no system dialog) ---------- */
+const os = require('os');
+const SAFE = /^[\w.+\-]{1,64}$/;
+function parseLpOptions(text) {
+  // lines look like:  InputSlot/Media Source: *Auto Tray1 Tray2
+  const out = { tray: [], mediaType: [], quality: [] };
+  String(text || '').split('\n').forEach(line => {
+    const m = line.match(/^([\w-]+)(?:\/([^:]+))?:\s*(.*)$/); if (!m) return;
+    const key = m[1], choices = m[3].trim().split(/\s+/).filter(Boolean).map(c => ({ value: c.replace(/^\*/, ''), def: c[0] === '*' })).filter(c => SAFE.test(c.value));
+    const bucket = key === 'InputSlot' ? 'tray' : key === 'MediaType' ? 'mediaType' : /^(Resolution|OutputMode|PrintQuality|cupsPrintQuality)$/.test(key) ? 'quality' : null;
+    if (bucket && !out[bucket].length) { out[bucket] = choices; if (bucket === 'quality') out.qualityKey = key; }
+  });
+  return out;
+}
+const runCmd = (cmd, args) => new Promise(res => execFile(cmd, args, { timeout: 20000 }, (err, stdout, stderr) => res({ err, stdout: String(stdout || ''), stderr: String(stderr || '') })));
+const fromMain = e => win && e.sender === win.webContents;
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 ipcMain.handle('frz:listPrinters', async e => {
   if (!fromMain(e)) return [];
   try { return (await e.sender.getPrintersAsync()).map(p => ({ name: p.name, displayName: p.displayName || p.name, isDefault: !!p.isDefault })); } catch (err) { return []; }
 });
 ipcMain.handle('frz:printerOptions', async (e, name) => {
   if (!fromMain(e) || typeof name !== 'string') return { direct: false, tray: [], mediaType: [], quality: [] };
+<<<<<<< HEAD
   if (process.platform === 'win32') { try { return await require('./winprint').capabilities(name); } catch (err) { return { direct: false, tray: [], mediaType: [], quality: [] }; } }
+=======
+  if (process.platform === 'win32') return { direct: false, tray: [], mediaType: [], quality: [] };
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
   const r = await runCmd('lpoptions', ['-p', name, '-l']);
   return { direct: !r.err, ...parseLpOptions(r.stdout) };
 });
@@ -72,6 +101,7 @@ ipcMain.handle('frz:printPdf', async (e, bytes, o) => {
   if (!fromMain(e) || !(bytes instanceof Uint8Array || Buffer.isBuffer(bytes)) || !o || typeof o.printer !== 'string') return { ok: false, message: 'Bad request.' };
   if (process.platform === 'win32') return { ok: false, unsupported: true, message: 'Direct PDF printing is not available on Windows.' };
   const known = (await e.sender.getPrintersAsync()).map(p => p.name); if (!known.includes(o.printer)) return { ok: false, message: 'Unknown printer.' };
+<<<<<<< HEAD
   const args = buildLpArgs(o);
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'frz-print-')), file = path.join(dir, 'print.pdf');
   try {
@@ -93,6 +123,21 @@ ipcMain.handle('frz:printerProps', async (e, o) => {
   const known = (await e.sender.getPrintersAsync()).map(p => p.name); if (!known.includes(o.printer)) return { ok: false, message: 'Unknown printer.' };
   let hwnd = '0'; try { const h = win && win.getNativeWindowHandle(); if (h) hwnd = h.length >= 8 ? h.readBigUInt64LE(0).toString() : String(h.readUInt32LE(0)); } catch (x) { }
   return require('./winprint').driverProperties({ printer: o.printer, devmode: o.devmode, hwnd });
+=======
+  const args = ['-d', o.printer, '-n', String(Math.min(99, Math.max(1, parseInt(o.copies, 10) || 1)))];
+  const sides = { one: 'one-sided', long: 'two-sided-long-edge', short: 'two-sided-short-edge' }[o.sides] || 'one-sided'; args.push('-o', 'sides=' + sides);
+  if (o.tray && SAFE.test(o.tray)) args.push('-o', 'InputSlot=' + o.tray);
+  if (o.mediaType && SAFE.test(o.mediaType)) args.push('-o', 'MediaType=' + o.mediaType);
+  if (o.quality && SAFE.test(o.quality) && o.qualityKey && SAFE.test(o.qualityKey)) args.push('-o', o.qualityKey + '=' + o.quality);
+  else if (o.qualityLevel) args.push('-o', 'print-quality=' + ({ draft: 3, normal: 4, best: 5 }[o.qualityLevel] || 4));
+  if (o.color === false) args.push('-o', 'print-color-mode=monochrome');
+  if (o.title && typeof o.title === 'string') args.push('-t', o.title.slice(0, 80));
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'frz-print-')), file = path.join(dir, 'print.pdf');
+  fs.writeFileSync(file, Buffer.from(bytes)); args.push('--', file);
+  const r = await runCmd('lp', args); setTimeout(() => { try { fs.rmSync(dir, { recursive: true, force: true }); } catch (x) { } }, 10 * 60 * 1000);
+  if (r.err) return { ok: false, message: (r.stderr || r.err.message || 'The printer did not accept the job.').trim().slice(0, 300) };
+  return { ok: true, message: (r.stdout.match(/request id is (\S+)/) || [])[1] ? 'Sent to ' + o.printer + ' (job ' + RegExp.$1 + ').' : 'Sent to ' + o.printer + '.' };
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 });
 /* Fallback (Windows, or when CUPS is missing): print the page the renderer prepared, silently, to the chosen printer. */
 ipcMain.handle('frz:printPage', (e, o) => new Promise(res => {
@@ -155,7 +200,11 @@ function showAbout() {
     title: 'About',
     message: 'FRZ PDF Express ' + app.getVersion(),
     detail: [
+<<<<<<< HEAD
       'Open-source PDF, image and document tools that work offline. PDFs opened in the Viewer are kept in local Recent history until removed or cleared.',
+=======
+      'Open-source PDF, image and document tools that work offline. Files never leave your device.',
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       '',
       'Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations.',
       'Sole creators: Faraz Ahammed CM / FRZ Generations.',
@@ -199,7 +248,11 @@ function createWindow() {
     return { action: 'deny' };
   });
   win.webContents.on('will-navigate', (e, url) => {
+<<<<<<< HEAD
     if (!security.isTrustedAppUrl(url)) {
+=======
+    if (!url.startsWith(`${SCHEME}://${HOST}/`)) {
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
       e.preventDefault();
       if (/^(mailto|tel):/i.test(url)) shell.openExternal(url);
     }
@@ -235,6 +288,7 @@ else {
 
   app.whenReady().then(() => {
     protocol.handle(SCHEME, req => {
+<<<<<<< HEAD
       try {
         const u = new URL(req.url);
         if (u.protocol !== `${SCHEME}:` || u.hostname !== HOST || u.username || u.password || u.port) return new Response('Not found', { status: 404 });
@@ -260,6 +314,23 @@ else {
       return security.isTrustedPermissionContext(wc, win && win.webContents, requestUrl, details) &&
         security.mayGrantPermissionCheck(permission, details || {});
     });
+=======
+      const u = new URL(req.url);
+      if (u.host !== HOST) return new Response('Not found', { status: 404 });
+      let rel = decodeURIComponent(u.pathname);
+      if (rel === '/' || rel === '') rel = '/app.html';
+      if (rel === '/sw.js') return new Response('', { status: 404 }); // offline cache is not needed in the desktop app
+      const file = path.normalize(path.join(WWW, rel));
+      if (!file.startsWith(WWW + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return new Response('Not found', { status: 404 });
+      return net.fetch(pathToFileURL(file).toString());
+    });
+
+    session.defaultSession.setPermissionRequestHandler((wc, permission, cb, details) => {
+      const ok = (permission === 'media' || permission === 'clipboard-sanitized-write') && String(details.requestingUrl || '').startsWith(`${SCHEME}://${HOST}/`);
+      cb(ok);
+    });
+    session.defaultSession.setPermissionCheckHandler((_wc, permission) => permission === 'media' || permission === 'clipboard-sanitized-write');
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 
     buildMenu();
     pdfArgs(process.argv).forEach(f => pendingFiles.push(f));

@@ -6,8 +6,11 @@ FRZ PDF Express is a free, MIT-licensed, open-source browser-based PDF toolkit c
 
 PDF and Office files are processed locally in the browser. The website does not upload user documents to a conversion server. After the app shell and required client-side libraries load once, cached tools can work offline. OCR language data may need an initial online download.
 
+<<<<<<< HEAD
 PDFs opened in the Viewer are stored in the local browser/app profile's IndexedDB for “Recent files” until removed or history is cleared. The viewer attempts to retain up to 30 PDFs and about 400 MiB. This viewer-history behavior is separate from the other tools' file-selection flows.
 
+=======
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 ## Tools
 
 The 33-tool catalog includes merge, split, organize, delete pages, rotate, insert blank pages, image-to-PDF, scan-to-PDF, page extraction and viewing, PDF-to-image, crop margins, visual-signature stamping, text comparison, page numbering, watermark, highlight, add text, redact, form fill, flatten, compress, repair, metadata editing, OCR, and fast selectable-text extraction.

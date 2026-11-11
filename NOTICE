@@ -20,6 +20,7 @@ original code. Third-party libraries and fonts that the application loads are
 the work of their respective authors and remain under their own licences
 (see THIRD_PARTY_NOTICES.md); they are not claimed by this notice.
 
+<<<<<<< HEAD
 PUBLIC-SECTOR REVIEW STATUS
 ---------------------------
 This source version includes repository-level remediation notes prepared for
@@ -36,6 +37,17 @@ user removes them or clears history. The host or browser platform may separately
 process ordinary request or device information; user-activated external links
 connect to their destination. See policies.html#privacy, GUIDELINES-COMPLIANCE.md
 and REMEDIATION-REPORT.md for details and evidence boundaries.
+=======
+GOVERNMENT GUIDELINES
+---------------------
+This application was developed on the basis of government open-source and
+open-standards guidelines: it is released under an OSI-approved licence (MIT),
+its source is fully readable and editable, it uses open web standards, it has
+no backend and no user accounts, it makes no third-party requests, and all
+files are processed on the user's own device. Its accessibility and security
+design follows GIGW 3.0 and WCAG 2.1 AA. See GUIDELINES-COMPLIANCE.md for the
+checklist and for the items that still need an official audit.
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
 
 REQUIRED CREDIT WHEN YOU USE THIS CODE
 --------------------------------------

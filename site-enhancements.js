@@ -2,7 +2,11 @@
  * FRZ PDF Express — an open-source application by FRZ Generations
  * Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations. All rights reserved except as granted by the MIT License.
  * Sole creators: Faraz Ahammed CM / FRZ Generations (https://github.com/frz-generations).
+<<<<<<< HEAD
  * Open-source application; no government approval or standards-conformance status is claimed.
+=======
+ * Created by FRZ Generations as an open-source application, following government open-source guidelines.
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
  * SPDX-License-Identifier: MIT
  * Any use, copy, modification or redistribution must keep this notice and credit
  * "Faraz Ahammed CM / FRZ Generations" (see LICENSE and NOTICE).
@@ -34,7 +38,11 @@
         <li><strong>Focused launch:</strong> the update popup no longer opens over direct tool links or PDF-handler launches; use the What’s New button to open it at any time.</li>
         <li><strong>Offline-ready:</strong> the app shell and conversion libraries are cached after loading. OCR language data may need its first online download.</li>
       </ul>
+<<<<<<< HEAD
       <p class="frz-whats-new-note">Files stay in your browser. PDFs opened in Viewer remain in local Recent-files history until you remove them or clear history; <a href="policies.html#privacy">privacy and storage details</a>. Crop changes the visible page area but does not erase hidden content; signing is a visual stamp; text comparison and Word/Markdown conversion have limits described in each tool.</p>
+=======
+      <p class="frz-whats-new-note">Files stay in your browser. Crop changes the visible page area but does not erase hidden content; signing is a visual stamp; text comparison and Word/Markdown conversion have limits described in each tool.</p>
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
     </div>
     <div class="frz-whats-new-actions"><button class="frz-whats-new-close" type="button">Got it</button></div>`;
 

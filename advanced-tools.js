@@ -2,7 +2,11 @@
  * FRZ PDF Express — an open-source application by FRZ Generations
  * Copyright (c) 2026 Faraz Ahammed CM / FRZ Generations. All rights reserved except as granted by the MIT License.
  * Sole creators: Faraz Ahammed CM / FRZ Generations (https://github.com/frz-generations).
+<<<<<<< HEAD
  * Open-source application; no government approval or standards-conformance status is claimed.
+=======
+ * Created by FRZ Generations as an open-source application, following government open-source guidelines.
+>>>>>>> 0f24d202aa411c19baf13ae2e4dbe86d860c2ed7
  * SPDX-License-Identifier: MIT
  * Any use, copy, modification or redistribution must keep this notice and credit
  * "Faraz Ahammed CM / FRZ Generations" (see LICENSE and NOTICE).
